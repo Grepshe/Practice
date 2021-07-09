@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace ConsoleApp2
 {
@@ -28,6 +31,13 @@ namespace ConsoleApp2
         }
 
         public void Dispose()
+        {
+            m_sW.Close();
+            m_sW.Dispose();
+            GC.SuppressFinalize(this);
+        }
+        
+        ~Logger()
         {
             m_sW.Close();
             m_sW.Dispose();
